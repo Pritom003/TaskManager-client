@@ -12,11 +12,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="mx-auto flex flex-row" style={containerStyle}>
-      <div className="min-h-screen md:w-1/4 lg:w-1/6 shadow-lg rounded-lg text-white bg-[#635147]">
+    <div className="mx-auto flex flex-col md:flex-row " style={containerStyle}>
+     {/* <div className="min-h-screen w-20 md:w-1/4 lg:w-1/6 shadow-lg rounded-lg text-white bg-[#635147]"> */}
+      <div className="md:min-h-screen w-full md:w-1/5 shadow-lg  text-white  bg-[#635147]">
         <ul className="menu p-4">
           <li>
-        <NavLink to="/dashboard/userHome">
+        <NavLink to="userHome">
           <FaHouseUser  className="text-xl"></FaHouseUser> User Home
         </NavLink>
         </li>

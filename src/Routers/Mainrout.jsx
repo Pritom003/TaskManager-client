@@ -9,6 +9,7 @@ import UserHome from "../Dashboard/UserHome";
 import Todo from "../Dashboard/Todo";
 import Completed from "../Dashboard/Completed";
 import Addtask from "../Dashboard/Addtask";
+import Dash from "./Dash";
 
 
 const Mainrout = createBrowserRouter([
@@ -35,6 +36,10 @@ const Mainrout = createBrowserRouter([
       path: '/dashboard',
       element:<Privaterout><Dashboard></Dashboard></Privaterout>,
       children:[
+        {
+        path:'',
+        element:<Dash></Dash>
+      },
         {
         path:'userHome',
         element:<UserHome></UserHome>

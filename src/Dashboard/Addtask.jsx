@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import useAuth from '../Hooks/UseAuth';
 import useAxios from '../Hooks/UseAxios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,20 +18,57 @@ const AddTask = () => {
   const [endDate, setEndDate] = useState(new Date());
 
   const onSubmit = async (data) => {
-    const imageFile = { image: data.image[0] };
-    console.log(imageFile);
+    try {
+      const imageFile = { image: data.image[0] };
+      console.log(imageFile);
 
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    });
+      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      });
+
+      if (res.data.success) {
+        const propertyData = {
+          title: data.title,
+          description: data.description,
+          agentName: user?.displayName,
+          agentEmail: user?.email,
+          agentImage: user?.photoURL,
+          startDate: startDate, // Adjusted to use startDate
+          endDate: endDate,     // Adjusted to use endDate
+          taskType: data.taskType, // Added taskType
+          imageUrl: res.data.data.display_url,
+          status: 'pending',
+        };
+
+        console.log(propertyData);
+
+        const properties = await axiosPublic.post('/alltask', propertyData);
+
+        if (properties.data.insertedId) {
+          // show success popup
+          // reset();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `${data.title} is added to the list`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle the error, show a user-friendly message, or log it appropriately
+    }
   };
+  
 
   return (
     <div>
       <div className="bg-transparent">
-        <div className="grid justify-center items-center">
+        <div className="grid  justify-center items-center">
           <div>
             <h2 className="text-2xl font-bold text-center m-4 text-#635147">
               Add New Task
@@ -44,7 +83,8 @@ const AddTask = () => {
                 type="file"
                 name="image"
                 {...register('image', { required: true })}
-                className="mt-1 p-2 rounded-lg border border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none w-full"
+                className="mt-1 p-2 rounded-lg border border-gray-300 
+                focus:ring focus:ring-indigo-200 focus:outline-none w-full"
               />
             </div>
             <div className="mb-4 sm:mb-0">
@@ -55,7 +95,7 @@ const AddTask = () => {
                 type="text"
                 name="title"
                 {...register('title', { required: true })}
-                className="mt-1 p-2 rounded-lg border border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none w-full"
+                className="mt-1 p-2 rounded-lg border w-full border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none "
               />
             </div>
             <div className="mb-4 sm:mb-0">
@@ -64,7 +104,7 @@ const AddTask = () => {
               </label>
               <textarea
                 {...register('description', { required: true })}
-                className="mt-1 p-2 rounded-lg border border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none w-full"
+                className="mt-1 p-2 w-full rounded-lg border border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none "
                 name="description"
               ></textarea>
             </div>
@@ -93,7 +133,8 @@ const AddTask = () => {
               />
             </div>
          
-            <div className="mb-4 sm:mb-0">
+           <div className='flex flex-col md:flex-row gap-3'>
+           <div className="mb-4 sm:mb-0">
               <label className="block text-sm font-medium text-#635147">
                 creation date
               </label>
@@ -115,6 +156,7 @@ const AddTask = () => {
                 className="mt-1 p-2 rounded-lg border border-gray-300 focus:ring focus:ring-indigo-200 focus:outline-none w-full"
               />
             </div>
+           </div>
             <div className="mb-4 sm:mb-0">
               <label className="block text-sm font-medium text-#635147">
                 Task Type
