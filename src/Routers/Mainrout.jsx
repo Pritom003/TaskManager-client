@@ -4,6 +4,11 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authenticate/Login";
 import Registration from "../Pages/Authenticate/Registration";
 import Privaterout from "./Privaterout";
+import Dashboard from "../Layout/Dashboard";
+import UserHome from "../Dashboard/UserHome";
+import Todo from "../Dashboard/Todo";
+import Completed from "../Dashboard/Completed";
+import Addtask from "../Dashboard/Addtask";
 
 
 const Mainrout = createBrowserRouter([
@@ -25,6 +30,33 @@ const Mainrout = createBrowserRouter([
       }
     ]
   },
+  
+    {
+      path: '/dashboard',
+      element:<Privaterout><Dashboard></Dashboard></Privaterout>,
+      children:[
+        {
+        path:'userHome',
+        element:<UserHome></UserHome>
+      },
+        {
+        path:'todo',
+        element:<Todo></Todo>
+      },
+        {
+        path:'complete',
+        element:<Completed></Completed>
+      },
+        {
+        path:'add',
+        element:<Addtask></Addtask>
+      },
+
+    
+    ]
+  
+   
+  }
 ]);
 
 export default Mainrout;

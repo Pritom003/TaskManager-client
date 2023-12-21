@@ -1,5 +1,6 @@
 
 // import { Button, colors } from '@mui/material';
+import { Link } from 'react-router-dom';
 import bannerimg from './../../assets/images/banner.jpg';
 // import {} from "react-icons/fa";
 import { FaAngular } from "react-icons/fa";
@@ -20,9 +21,9 @@ const Banner = () => {
       <h1 className="text-5xl font-bold">TaskManager</h1>
       <p className="py-6"> TaskManager: Your all-in-one task solution. Effortlessly add, organize, and conquer your daily agenda. Boost productivity with a 
       seamless platform designed for simplicity and success</p>
-      <button className="btn btn-wide bg-[#9F8170]
+   <Link to='/dashboard'>   <button className="btn btn-wide bg-[#9F8170]
       font-bold
-      text-white">get stated <FaAngular></FaAngular> </button>
+      text-white">get stated <FaAngular></FaAngular> </button></Link>
     </div>
   </div>
 </div>

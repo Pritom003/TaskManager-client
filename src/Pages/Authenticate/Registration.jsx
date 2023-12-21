@@ -42,12 +42,7 @@ const Registration = () => {
       setpasserr(error.message || 'An error occurred during login.')
     }
 
-    // creategooglesignup()
-    // .then((res) => {
-    //   console.log('user', res.user);
-    // })
-    // .catch((error) => {
-    //   console.error(error)})
+ 
 
 
   };

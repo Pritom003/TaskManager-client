@@ -1,5 +1,5 @@
 import { FaKey } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form"
 import useAuth from "../../Hooks/UseAuth";
@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Login = () => {
   const { loginuser} = useAuth()
+  const navigate=useNavigate()
   const [passerr, setpasserr] = useState(''); 
   const {
     register,
@@ -21,6 +22,8 @@ const Login = () => {
       const response = await loginuser(data.email, data.password);
       console.log(response);
       setpasserr('')
+      
+     navigate(location?.state? location.state :'/dashboard')
     } catch (error) {
       console.error(error);
       setpasserr(error.message || 'An error occurred during login.')
