@@ -26,19 +26,20 @@ const Dashboard = () => {
           <IoIosAdd className="text-2xl font-bold"></IoIosAdd> Add task
         </NavLink>
         </li>
-          <li>
+          {/* <li>
         <NavLink to="/dashboard/now">
-          <RiPresentationLine className="text-xl"></RiPresentationLine> on going
+          <RiPresentationLine className="text-xl"></RiPresentationLine> 
         </NavLink>
-        </li>
+        </li> */}
           <li>
         <NavLink to="/dashboard/todo">
-          <MdOutlinePendingActions className="text-xl"></MdOutlinePendingActions> To do
+          <MdOutlinePendingActions className="text-xl"></MdOutlinePendingActions> 
+        data
         </NavLink>
         </li>
           <li>
         <NavLink to="/dashboard/complete">
-          <IoMdCloudDone className="text-xl"></IoMdCloudDone> completed
+        <RiPresentationLine className="text-xl"></RiPresentationLine>  MY added task
         </NavLink>
         </li>
         <div className="divider"></div> 
