@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authenticate/Login";
 import Registration from "../Pages/Authenticate/Registration";
+import Privaterout from "./Privaterout";
 
 
 const Mainrout = createBrowserRouter([
