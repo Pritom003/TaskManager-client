@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { FaIgloo, FaKey } from "react-icons/fa";
+import { GithubAuthProvider, getAuth, signInWithPopup} from "firebase/auth";
+
+import { FaGithub, FaIgloo, FaKey } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../../Hooks/UseAuth";
@@ -7,7 +9,7 @@ import { updateProfile } from "firebase/auth";
 import googleImage from "../../assets/images/goodle button.jpg"; 
 import Swal from "sweetalert2";
 const Registration = () => {
-  const { createUser,    creategooglesignup,}=useAuth()
+  const { createUser, creategooglesignup,}=useAuth()
 
   const [passerr, setpasserr] = useState('');
 
@@ -66,7 +68,18 @@ const Registration = () => {
       setpasserr(error.message || 'An error occurred during login.')
     }
   };
-
+  const auth = getAuth();
+  const handleGithub = () => {
+    const githubProvider = new GithubAuthProvider();
+    signInWithPopup(auth, githubProvider)
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser.email);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -126,14 +139,19 @@ const Registration = () => {
                  text-white">Register <FaKey /></button>
               </div>
             </form>
-            <div  className="flex">
+            <div  className=" grid  grid-cols-2 gap-2">
             <label className="label">
                   <span className="label-text font-bold text-[#3D2B1F]">sign in with google
                  
                    </span>
                 </label>
                  <div className="btn  " onClick={handleGoogleLogin}>  <img className="h-10 pl-6" src={googleImage} alt="" /></div>
-</div>
+
+
+<button onClick={handleGithub} className="btn btn-ghost p-4 bg-black text-white font-bold"> 
+github <FaGithub></FaGithub></button>
+
+</div> 
           </div>
         </div>
       </div>

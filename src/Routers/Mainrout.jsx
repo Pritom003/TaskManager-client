@@ -10,6 +10,7 @@ import Todo from "../Dashboard/Todo";
 import Completed from "../Dashboard/Completed";
 import Addtask from "../Dashboard/Addtask";
 import Dash from "./Dash";
+import Alltasks from "../Pages/Alltasks/Alltasks";
 
 
 const Mainrout = createBrowserRouter([
@@ -28,6 +29,10 @@ const Mainrout = createBrowserRouter([
       {
         path:'/regi',
         element:<Registration></Registration>
+      },
+      {
+        path:'/All',
+        element:<Privaterout><Alltasks></Alltasks></Privaterout>
       }
     ]
   },

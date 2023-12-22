@@ -32,9 +32,9 @@ const AddTask = () => {
         const propertyData = {
           title: data.title,
           description: data.description,
-          agentName: user?.displayName,
-          agentEmail: user?.email,
-          agentImage: user?.photoURL,
+          creatorName: user?.displayName,
+          creatorEmail: user?.email,
+          creatorImage: user?.photoURL,
           startDate: startDate, // Adjusted to use startDate
           endDate: endDate,     // Adjusted to use endDate
           taskType: data.taskType, // Added taskType

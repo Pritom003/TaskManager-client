@@ -31,8 +31,8 @@ const Todo = () => {
       <tr>
   
         <th>Task</th>
-        <th>Job</th>
-        <th>Deadli</th>
+        <th>deadlinde</th>
+        <th>type</th>
       </tr>
     </thead>
     <tbody>
