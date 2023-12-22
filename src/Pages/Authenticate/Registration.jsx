@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/UseAuth";
 import { updateProfile } from "firebase/auth";
 import googleImage from "../../assets/images/goodle button.jpg"; 
 import Swal from "sweetalert2";
+import Navbar from "../Shared/Navbar";
 const Registration = () => {
   const { createUser, creategooglesignup,}=useAuth()
 
@@ -83,6 +84,7 @@ const Registration = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
         <div className="hero min-h-screen bg-yellow-50"  >
       <div className="hero-content text-center">
         <div className="min-w-[400px]">
