@@ -11,10 +11,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <DndProvider backend={HTML5Backend}>
+<div className='max-w-screen mx-auto'>
+<DndProvider backend={HTML5Backend}>
        <QueryClientProvider client={queryClient}>
    <AuthiProvider> <RouterProvider router={Mainrout} /></AuthiProvider>
    </QueryClientProvider>
    </DndProvider>
+</div>
   </React.StrictMode>,
 )
